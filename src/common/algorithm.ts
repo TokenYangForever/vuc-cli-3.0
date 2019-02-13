@@ -2,7 +2,7 @@
  * 
  * @param arr 数字类型的从小到大的有序数组
  * @param target 目标数字
- * @return 返回目标所对应的下标，查询失败返回0
+ * @return 返回目标所对应的下标，查询失败返回 -1
  */
 const binarySearch = (arr: [number], target: number) : number => {
   let left: number = 0

@@ -28,14 +28,43 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <div v-if="showHiden">
+      这里是隐藏内容
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+const KEYS_CODE_GROUPS: number[] = [38, 40, 37, 39, 65, 66] // 上下左右AB
+let keyIndex: number = 0
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
+  showHiden: Boolean = false
+  // data() {
+  //   return {
+  //     showHiden: false
+  //   }
+  // }
+  mounted() {
+    keyIndex = 0
+    document.onkeydown = e => {
+      let { keyCode } = e
+      if (keyCode === KEYS_CODE_GROUPS[keyIndex]) {
+        keyIndex += 1
+        if (keyIndex >= KEYS_CODE_GROUPS.length) {
+          this.showHiden = true
+          document.onkeydown = null
+        }
+      } else {
+        keyIndex = 0
+      }
+    }
+  }
+  beforeDestroy() {
+    document.onkeydown = null
+  }
 }
 </script>
 
