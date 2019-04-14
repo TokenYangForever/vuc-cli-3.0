@@ -39,10 +39,7 @@
       "eslint:recommended",
       "@vue/typescript"
     ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "@typescript-eslint/parser"
-    }
+    "rules": {}
   },
   "postcss": {
     "plugins": {
